@@ -323,7 +323,7 @@ int main() {
 	int sec;
 	bool renkUzayi;
 
-	cout << "0-COLOR_BGR2GRAY" << endl << "1-VARSAYILAN 3 BIT" << endl << "secim >>";
+	cout << "\033[1;31mq tusu ile cikis yapabilirsin\033[0m" << endl << "0-COLOR_BGR2GRAY" << endl << "1-VARSAYILAN 3 BIT" << endl << "secim >>";
 	cin >> sec;
 	
 	renkUzayi = (sec > 0) ? false : true;
