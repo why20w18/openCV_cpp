@@ -1,3 +1,311 @@
+/*#include <opencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+
+	Mat goruntu = imread("tux.png");
+
+	//olceklendir
+	resize(goruntu, goruntu, Size(500, 500));
+
+	//randu(goruntu, goruntu, Scalar(0, 0, 0), Scalar(255, 255, 255));
+
+	namedWindow("tux_foto", WINDOW_AUTOSIZE);
+	imshow("tux_foto", goruntu);
+
+	waitKey();
+
+	return 0x0;
+}
+*/
+//-------------------------------------------------------------------------------------
+/*#include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+
+	Mat goruntu = imread("tux.png");
+
+	//resize 800kb 
+	resize(goruntu, goruntu, Size(500, 500));
+	
+	//uzanti degistirme 40 kb
+	imwrite("tux.jpeg",goruntu);
+
+	//vektor ile kalite degistirme 8kb oldu
+	vector<int> kalite;
+	kalite.push_back(IMWRITE_JPEG_QUALITY);
+	kalite.push_back(1);
+	imwrite("tux.jpg", goruntu,kalite);
+
+	//pencere acma
+	namedWindow("tux_foto", WINDOW_AUTOSIZE);
+	imshow("tux_foto", goruntu);
+
+	waitKey();
+	return 0x0;
+}
+*/
+//-----------------------------------------------------------
+/*#include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+
+	Mat goruntu = imread("tux.png");
+
+	//resize
+	resize(goruntu, goruntu, Size(500, 500));
+
+	//goruntu formati
+	imwrite("tux.bmp", goruntu);
+
+	//gorun kalitesi
+
+	vector<int> quality;
+	quality.push_back(IMWRITE_JPEG_QUALITY);
+	quality.push_back(1);
+
+	imwrite("tux.jpg", goruntu, quality);
+
+	//pencere
+	namedWindow("tux_fot", WINDOW_AUTOSIZE);
+	imshow("tux_fot", goruntu);
+
+
+	waitKey();
+	return 0x0;
+}
+*/
+//---------------------------------------------------------------
+/*
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+
+	Mat goruntu = imread("tux.png");
+
+	//resize
+	resize(goruntu, goruntu, Size(500, 500));
+	imshow("bgr hali", goruntu);
+
+
+	//cvtColor hsv renk yogunlugu
+	cvtColor(goruntu, goruntu, COLOR_BGR2HSV);
+	imshow("hsv hali", goruntu);
+
+	waitKey();
+	return 0x0;
+}
+*/
+//---------------------------------------------------------------
+/*
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+
+	VideoCapture videoInput("bladeRunner2049.mp4");
+
+	if (videoInput.isOpened()){
+		int i = 0;
+		while (1) {
+			Mat kare;
+			videoInput.read(kare);
+			imshow("blade runner 2049 edit", kare);
+			i++;
+			cout << "kare sayisi: " << i << endl;
+			if (waitKey(100) == 'y') break;
+		}
+	}
+
+	return 0x0;
+}
+*/
+//------------------------------------------------------------------------------
+/*
+#include <opencv2/opencv.hpp>
+#include <iostream>
+#include <thread>
+#include <chrono>
+
+using namespace std;
+using namespace cv;
+using namespace this_thread;
+using namespace chrono;
+
+int main() {
+
+	VideoCapture kamera(0);
+	stringstream fpsDegeri;
+	double fps;
+
+	if (!kamera.isOpened()) {
+		cout << "kamera bulunamadi !" << endl;
+		return -1;
+	}
+
+	while (true) {
+		Mat kare;
+		bool isFrameRead = kamera.read(kare);
+		if (!isFrameRead) {
+			cout << "kameradan gelen goruntu okunmuyor !" << endl;
+			return -2;
+		}
+		fps = kamera.get(CAP_PROP_FPS);
+		fpsDegeri.str(" ");
+		fpsDegeri.clear();
+		fpsDegeri << "fps" << fps;
+		putText(kare, fpsDegeri.str(), Point(50, 50), 1, 2, Scalar(0, 255, 0), 2);
+		imshow("kamera", kare);
+		if (waitKey(100) == 'y') break;
+	}
+	return 0x0;
+}
+*/
+//-------------------------------------------------------------------------------------
+/*
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+
+	VideoCapture kamera(0);
+	stringstream fpsSS;
+	double fps;
+
+	if (!kamera.isOpened()) {
+		cout << "kamera bulunamadi !" << endl;
+		return -1;
+	}
+
+	while (true) {
+
+		Mat kare;
+
+		bool isRead = kamera.read(kare);
+		
+		if (!isRead) {
+			cout << "kare okunamiyor !" << endl;
+			return -2;
+		}
+		fps = kamera.get(CAP_PROP_FPS);
+		fpsSS.str(" ");
+		fpsSS.clear();
+		fpsSS << "fps : " << fps;
+		putText(kare, fpsSS.str(), Point(10, 45), 1, 2, Scalar(0, 255, 0), 2);
+
+		imshow("kamera penceresi", kare);
+
+		if (waitKey(100) == 'y') break;
+
+	}
+
+	return 0x0;
+}
+*/
+//----------------------------------------------------------------------
+/*
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+
+	VideoCapture kamera(0);
+	double fps;
+	stringstream fpsval;
+
+	if (!kamera.isOpened()) {
+		cout << "kamera bulunamadi !" << endl;
+		return -1;
+	}
+
+	while (1) {
+
+		Mat frame;
+
+		bool okuma = kamera.read(frame);
+
+		if (!okuma) {
+			cout << "frame okumasi yapilamiyor !" << endl;
+			return -2;
+		}
+
+		fps = kamera.get(CAP_PROP_FPS);
+		fpsval.str(" ");
+		fpsval.clear();
+		fpsval << "fps : " << fps;
+		putText(frame, fpsval.str(), Point(10, 45), 1, 2, Scalar(0, 255, 0), 2);
+
+		imshow("kamera penceresi", frame);
+
+		if (waitKey(100) == 'q') {
+			cout << "cikis yapildi" << endl;
+			break;
+		}
+
+	}
+	return 0x0;
+}
+*/
+/*
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace std;
+using namespace cv;
+
+int main() {
+
+	VideoCapture video("bladeRunner2049.mp4");
+	int kareSayisi = 0;
+	
+
+	if (!video.isOpened()) {
+		cout << "video konumda degil !" << endl;
+		return -1;
+	}
+
+	while (1) {
+		Mat frame;
+		string mesaj = "kare sayisi: " + to_string(kareSayisi);
+
+		video.read(frame);
+		
+		putText(frame, mesaj, Point(25, 50), 1, 2, Scalar(0, 255, 0), 3);
+		kareSayisi++;
+		
+		imshow("video penceresi", frame);
+
+		if (waitKey(100) == 'q') {
+			cout << "cikis yapildi !" << endl;
+			return -2;
+		}
+	}
+	return 0x0;
+}
+*/
 //webcamde isaretlenmis 100x200 noktasindaki pikselin yogunlugunu konsola veren program
 #include <opencv2/opencv.hpp>
 #include <iostream>
@@ -67,9 +375,9 @@ int main() {
 			int r = renkYogunlugu3Kanal[2];
 
 			cout << "BGR RENKLERDE = 3 KANALDA = 100x200 adresindeki piksel yogunlugu: " 
-				<< to_string(b) + " " 
+				<< to_string(r) + " " 
 				<< to_string(g) + " " 
-				<< to_string(r) + " " << endl;
+				<< to_string(b) + " " << endl;
 		}
 
 		//okunan kareyi pencereye basma
