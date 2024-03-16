@@ -8,6 +8,7 @@ int olustur = 0, b = 255, g = 255, r = 255;
 
 void mavi(int, void*) {
 	b++;
+	
 }
 void yesil(int, void*) {
 	g++;
