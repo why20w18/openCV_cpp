@@ -1,3 +1,0 @@
-/home/mint/opencvKurulum/opencvCPP/pikselYogunlugu/build/CMakeFiles/cikti.dir
-/home/mint/opencvKurulum/opencvCPP/pikselYogunlugu/build/CMakeFiles/edit_cache.dir
-/home/mint/opencvKurulum/opencvCPP/pikselYogunlugu/build/CMakeFiles/rebuild_cache.dir
